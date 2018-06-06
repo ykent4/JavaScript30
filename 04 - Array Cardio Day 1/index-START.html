@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Array Cardio 💪</title>
 </head>
+
 <body>
-  <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+  <p>
+    <em>Psst: have a look at the JavaScript Console</em> 💁</p>
   <script>
     // Get your shorts on - this is an array workout!
     // ## Array Cardio Day 1
@@ -31,29 +34,111 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const fifteen = inventors.filter(function (inventor) {
+      if (inventor.year >= 1500 && inventor.year < 1600) {
+        return true;
+      }
+    });
+
+    console.log(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
 
+    const firstLast = inventors.map(inventor => {
+      return inventor.first + ' ' + inventor.last;
+    })
+
+    console.log(firstLast);
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+
+    const sortedArr = inventors.sort((a, b) => {
+      return a.year - b.year
+    })
+
+    console.log(sortedArr);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
 
+    const totalYears = inventors.reduce((accum, curr) => {
+      return accum + curr.passed - curr.year;
+    }, 0)
+
+    console.log(totalYears);
+
     // 5. Sort the inventors by years lived
+
+    const inventorsYearsLived = inventors.sort((a, b) => {
+      return (a.passed - a.year) - (b.passed - b.year);
+    })
+
+    console.log(inventorsYearsLived);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    // const category = document.querySelector('.mw-category');
+
+    /*Array.from creates an array from an interable or array-like object
+  
+    console.log(Array.from('foo'));
+    expected output: Array ["f", "o", "o"]
+
+    console.log(Array.from([1, 2, 3], x => x + x));
+     expected output: Array [2, 4, 6]
+    */
+
+    // const links = Array.from(category.querySelectorAll('a'));
+
+    /*
+    Differences from innerText
+    
+    Internet Explorer introduced node.innerText. The name is similar but with the following differences:
+
+    While textContent gets the content of all elements, including <script> and <style> elements, innerText does not, only showing “human-readable” elements.
+    innerText is aware of styling and won’t return the text of “hidden” elements, whereas textContent does.
+    As innerText is aware of CSS styling, it triggers a reflow, whereas textContent doesn’t.
+    Unlike textContent, altering innerText in Internet Explorer (version 11 and below) removes child nodes from the element and permanently 
+    destroys all descendant text nodes. It is impossible to insert the nodes again into any other element or into the same element anymore.
+    
+    Differences from innerHTML
+    Element.innerHTML returns HTML as its name indicates. Sometimes people use innerHTML to retrieve or write text inside an element. 
+    textContent has better performance because its value is not parsed as HTML. Moreover, using textContent can prevent XSS attacks.
+    */
+
+    // const de = links
+    //             .map(link => link.textContent)
+    //             .filter(streetName => streetName.includes('de'));
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const alpha = people.sort((lastOne, nextOne) => {
+      const [aLast, aFirst] = lastOne.split(', ');
+      const [bLast, bFirst] = nextOne.split(', ');
+      return aLast > bLast ? 1 : -1;
+    });
+
+    console.log(alpha);
+
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+
+    const transportation = data.reduce(function (obj, item) {
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});
+
+    console.log(transportation);
 
   </script>
 </body>
+
 </html>
