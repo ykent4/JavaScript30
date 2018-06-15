@@ -11,6 +11,8 @@
   <script>
     const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
 
+    //go into elements in the dev tools
+      //right click -> break on -> attribute modifications
     function makeGreen() {
       const p = document.querySelector('p');
       p.style.color = '#BADA55';
@@ -18,28 +20,66 @@
     }
 
     // Regular
+    console.log('hello');
 
     // Interpolated
+    console.log('hello %s test', 'additional string');
 
     // Styled
+    console.log('%c I am some great text ', 'background: green');
 
     // warning!
+    console.warn('oh no');
 
     // Error :|
+    console.error('oh no error');
 
     // Info
+    console.info('fun fact');
 
     // Testing
+      //will only run if false
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('something'), 'it is wrong');
 
     // clearing
+      //clears console
+      //console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+        console.log(`this is name ${dog.name}`);
+        console.log(`this is age ${dog.age}`);
+      console.groupEnd(`${dog.name}`);
+    })
 
     // counting
+    console.count('count');
+    console.count('count2');
+    console.count('count');
+    console.count('count2');
+    console.count('count2');
+    console.count('count');    
+    console.count('count2');
+    console.count('count');
+    console.count('count');
 
     // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+    //table for array of objects
+    console.table(dogs);
 
   </script>
 </body>
