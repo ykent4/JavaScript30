@@ -24,6 +24,7 @@ function skip() {
 }
 
 function handleRangeUpdate() {
+  //this.name would be volume or playback rate
   video[this.name] = this.value;
 }
 
